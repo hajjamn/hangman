@@ -19,6 +19,9 @@ export default {
       } else {
         return false
       }
+    },
+    howManyPoints() {
+      return store.secretWord.filter((x) => x === this.item.letter).length
     }
   },
   methods: {
@@ -26,6 +29,7 @@ export default {
       this.item.clicked = true
       if (this.isCorrect === true) {
         this.item.status = 'found'
+        store.correct += this.howManyPoints
         this.class = 'btn-success'
         this.$emit('correct')
       } else {

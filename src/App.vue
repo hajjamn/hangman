@@ -27,6 +27,7 @@ export default {
     reset() {
       store.secretWord = []
       store.mistakes = 0
+      store.correct = 0
       for (let i = 0; i < store.alphabet.length; i++) {
         store.alphabet[i].clicked = false
         store.alphabet[i].status = ''
@@ -35,14 +36,16 @@ export default {
       this.start()
     },
     mistake() {
-      console.log(store.mistakes)
+      if (store.mistakes === 10) {
+        alert('Hai perso')
+      }
     },
     correct() {
-      console.log('Correct')
+      if (store.correct === store.secretWord.length) {
+        alert('Hai vinto')
+      }
     }
   },
-  created() {
-  }
 }
 </script>
 

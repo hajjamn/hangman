@@ -3,6 +3,7 @@ import { reactive } from 'vue'
 export const store = reactive({
   secretWord: [],
   maxWordLength: Number,
+  correct: 0,
   mistakes: 0,
   maxMistakes: 10,
   alphabet: [
