@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       store,
-      clicked: false,
+      /* clicked: false, */
       class: 'btn-light'
     }
   },
@@ -23,16 +23,15 @@ export default {
   },
   methods: {
     isCorrectCheck() {
-      this.clicked = true
-      console.log(this.isCorrect)
+      this.item.clicked = true
       if (this.isCorrect === true) {
-        console.log(`The ${this.item.letter} is correct`)
+        this.item.status = 'found'
         this.class = 'btn-success'
         this.$emit('correct')
       } else {
-        console.log(`The ${this.item.letter} is not correct`)
+        store.mistakes++
         this.class = 'btn-danger'
-        this.$emit('wrong')
+        this.$emit('mistake')
       }
     }
   }
@@ -40,9 +39,9 @@ export default {
 </script>
 
 <template>
-  <div :class="clicked === true ? 'my-clicked' : ''">
-    <button class="btn" @click="isCorrectCheck(item.letter)" :class="class">{{
-      item.letter }}</button>
+  <div :class="item.clicked === true ? 'my-clicked' : ''">
+    <button class="btn p-3" @click="isCorrectCheck(item.letter)" :class="class">{{
+      item.letter.toUpperCase() }}</button>
   </div>
 </template>
 
